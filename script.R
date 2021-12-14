@@ -32,11 +32,6 @@ library(syuzhet)
 # +: El carácter puede aparecer al menos 1 vez.
 # ?: El carácter puede aparecer hasta 1 vez.
 
-data.frame(string = c("AB", "A1B", "A11B", "A111B", "A1111B"),
-           ninguno_o_mas = str_detect(yes, "A1*B"),
-           ninguno_o_una_vez = str_detect(yes, "A1?B"),
-           una_vez_o_mas = str_detect(yes, "A1+B"))
-
 # Otra notación
 
 # [:digit:] o \d. Dígitos del 0 al 9, equivalente a [0-9].
@@ -49,62 +44,6 @@ data.frame(string = c("AB", "A1B", "A11B", "A111B", "A1111B"),
 # [:blank:]: Espacio y tabulación.
 # [:space:]: Espacio: tabulación, nueva línea, retorno de línea y espacio.
 # [:punct:]: Puntuación.
-
-# # Ejemplos --------------------------------------------------------------
-
-# Últimos cuatro números que estén al final de una cadena de texto
-# \d{4}$ 
-
-# Rescatar 1 o 2 dígitos de una cadena
-patron <- "^\\d{1,3}$"
-criterio <- c("123", "a4", "b")
-stringr::str_view(criterio, patron)
-
-universidades <- c("U. Kentucky", "Univ New Hampshire",
-                   "Univ. of Massachusetts","University Georgia", "U California",
-                   "California State University")
-
-patron <- "^Univ\\.?\\s|^U\\.?\\s"
-stringr::str_view(universidades, patron)
-
-numeros <- c("5,9", "5,11", "6,a", "6,3")
-patron <- "^[4-7],\\d*$" 
-stringr::str_detect(numeros, patron)
-stringr::str_view(numeros, patron)
-
-x <- c("Sebastián", "Sebastian", "Sebasti@n")
-y <- "Hoy aprenderemos expresiones regulares en el curso"
-
-# Rescatar una expresión
-substring(x, first = 4, last = 9) 
-# Longitud de caracteres
-nchar(x) 
-# Concatenar con separador
-paste(x, y, sep = " ")
-# Concatenar sin separador
-paste0(x, y)
-# Concatenar
-cat(x, y, sep = ". ")
-# Sustituir caracteres en una cadena de texto.
-chartr("e", "a", x) 
-# Minúscula
-tolower(x) 
-# Mayúscula
-toupper(x) 
-# Divide cadena de texto. Si utilizo simplify, lo expresa como matriz.
-stringr::str_split(y, "en R", simplify = TRUE) 
-# Reemplazar expresión regular
-stringr::str_replace(string = x, pattern = "Sebasti[a|@]n", replacement = "Sebastián") 
-# Detecta patrón lógico en cadena de texto.
-stringr::str_detect(string = x, pattern = "@") 
-# Posición en la cadena de texto.
-stringr::str_which(string = x, pattern = "@") 
-# Encuentra patrones de la expresión regular en la cadena
-grep(pattern = "Sebasti[a|á|@]n", x = x) 
-# Patrón lógico
-grepl(pattern = "Sebasti[a|á|@]n", x = x) 
-# Elimina las comas
-readr::parse_number(x = "5,879,281") 
 
 # Importar datos audiencias  ----------------------------------------------------------
 
